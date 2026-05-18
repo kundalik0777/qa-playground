@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deepgram Interview Practice</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero">
+        <p class="eyebrow">Real-time voice interview coach</p>
+        <h1>Practice interviews by talking naturally.</h1>
+        <p class="lede">
+          The agent listens live, speaks back instantly, and yields when you
+          interrupt.
+        </p>
+      </section>
+
+      <section class="panel controls">
+        <label class="field">
+          <span>Role</span>
+          <input id="roleInput" value="Senior Software Engineer" />
+        </label>
+
+        <label class="field">
+          <span>Company style</span>
+          <input id="companyInput" value="Product company with strong system design round" />
+        </label>
+
+        <label class="field">
+          <span>Focus</span>
+          <textarea id="focusInput" rows="4">Ask one interview question at a time, wait for my answer, then give concise feedback before the next question. Mix behavioral, technical, and follow-up questions.</textarea>
+        </label>
+
+        <div class="actions">
+          <button id="startButton">Start practice</button>
+          <button id="stopButton" disabled>Stop</button>
+        </div>
+
+        <div class="status-row">
+          <div>
+            <span class="status-label">Connection</span>
+            <strong id="connectionStatus">Idle</strong>
+          </div>
+          <div>
+            <span class="status-label">Mic</span>
+            <strong id="micStatus">Waiting</strong>
+          </div>
+          <div>
+            <span class="status-label">Agent</span>
+            <strong id="agentStatus">Not started</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel transcript-panel">
+        <div class="panel-head">
+          <h2>Transcript</h2>
+          <p>Live conversation log</p>
+        </div>
+        <div id="transcript" class="transcript"></div>
+      </section>
+    </main>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+  </html>
