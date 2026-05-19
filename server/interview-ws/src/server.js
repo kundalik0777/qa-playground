@@ -13,6 +13,7 @@ import { getConfig } from "./config.js";
 const config = getConfig();
 const MAX_JSON_BYTES = 64 * 1024;
 const MAX_AUDIO_BYTES = 256 * 1024;
+const MAX_DEEPGRAM_BUFFERED_BYTES = 1024 * 1024;
 const CLIENT_READY_TIMEOUT_MS = 15 * 1000;
 
 if (process.argv.includes("--check-config")) {
@@ -21,9 +22,17 @@ if (process.argv.includes("--check-config")) {
 }
 
 const server = createServer((req, res) => {
-  if (req.url === "/health") {
+  const url = new URL(req.url || "/", `http://${req.headers.host || "localhost"}`);
+
+  if (url.pathname === "/" || url.pathname === "/health") {
     res.writeHead(200, { "content-type": "application/json" });
     res.end(JSON.stringify({ ok: true, service: "interview-ws" }));
+    return;
+  }
+
+  if (url.pathname === "/favicon.ico") {
+    res.writeHead(204, { "cache-control": "public, max-age=86400" });
+    res.end();
     return;
   }
 
@@ -98,6 +107,14 @@ wss.on("connection", async (socket, req) => {
       }
       if (data.byteLength > MAX_AUDIO_BYTES) {
         await closeSession(INTERVIEW_END_REASONS.CONNECTION_CLOSED);
+        return;
+      }
+      if (deepgramSocket.bufferedAmount > MAX_DEEPGRAM_BUFFERED_BYTES) {
+        sendJson(socket, {
+          type: "Error",
+          message: "Realtime audio connection is backlogged",
+        });
+        await closeSession(INTERVIEW_END_REASONS.DEEPGRAM_ERROR);
         return;
       }
       deepgramSocket.send(data);
