@@ -28,31 +28,32 @@
 
 ## Tech Stack
 
-| Category | Technology | Version |
-|---|---|---|
-| Framework | Next.js (App Router) | ^16.1.7 |
-| Runtime | React | ^19.2.4 |
-| Language | JavaScript/JSX | (no TypeScript) |
-| Styling | Tailwind CSS | ^3.4.19 |
-| UI Components | shadcn/ui (new-york style) | — |
-| UI Primitives | Radix UI | various |
-| Icons | lucide-react, react-icons | ^0.577.0, ^5.6.0 |
-| Themes | next-themes | ^0.4.6 |
-| Toast | sonner | ^2.0.7 |
-| Date picker | react-day-picker | ^9.14.0 |
-| Drawer | vaul | ^1.1.2 |
-| Markdown parsing | unified, remark, rehype pipeline | various |
-| Syntax highlighting | shiki, rehype-pretty-code | ^4.0.2, ^0.14.3 |
-| SEO | next-sitemap | ^4.2.3 |
-| Analytics | @vercel/analytics | ^2.0.1 |
-| Authentication | better-auth | ^1.5.6 |
-| ORM | Prisma (prisma-client-js) | ^7.5.0 |
-| DB Driver | pg (PostgreSQL) | ^8.20.0 |
-| Bundler | Turbopack (dev) | built-in Next.js |
-| Package manager | npm | — |
-| Class merging | clsx + tailwind-merge (via `cn()`) | — |
+| Category            | Technology                         | Version          |
+| ------------------- | ---------------------------------- | ---------------- |
+| Framework           | Next.js (App Router)               | ^16.1.7          |
+| Runtime             | React                              | ^19.2.4          |
+| Language            | JavaScript/JSX                     | (no TypeScript)  |
+| Styling             | Tailwind CSS                       | ^3.4.19          |
+| UI Components       | shadcn/ui (new-york style)         | —                |
+| UI Primitives       | Radix UI                           | various          |
+| Icons               | lucide-react, react-icons          | ^0.577.0, ^5.6.0 |
+| Themes              | next-themes                        | ^0.4.6           |
+| Toast               | sonner                             | ^2.0.7           |
+| Date picker         | react-day-picker                   | ^9.14.0          |
+| Drawer              | vaul                               | ^1.1.2           |
+| Markdown parsing    | unified, remark, rehype pipeline   | various          |
+| Syntax highlighting | shiki, rehype-pretty-code          | ^4.0.2, ^0.14.3  |
+| SEO                 | next-sitemap                       | ^4.2.3           |
+| Analytics           | @vercel/analytics                  | ^2.0.1           |
+| Authentication      | better-auth                        | ^1.5.6           |
+| ORM                 | Prisma (prisma-client-js)          | ^7.5.0           |
+| DB Driver           | pg (PostgreSQL)                    | ^8.20.0          |
+| Bundler             | Turbopack (dev)                    | built-in Next.js |
+| Package manager     | npm                                | —                |
+| Class merging       | clsx + tailwind-merge (via `cn()`) | —                |
 
 **External Services:**
+
 - Google Analytics: `G-Z4H9RTYGS4`
 - Buy Me Coffee widget (in root layout)
 - Usercentrics consent management (in root layout)
@@ -293,26 +294,26 @@ User → Page Component
 
 ### Authentication & Authorization
 
-| Layer | What it does |
-|---|---|
-| `lib/auth.js` | Better-Auth server config — email/password, Prisma adapter, role field, 7-day sessions |
-| `lib/auth-client.js` | Better-Auth client — `useSession()`, `signIn.email()`, `signOut()` |
-| `app/api/auth/[...all]/route.js` | Better-Auth catch-all API handler |
-| `middleware.js` | Protects `/admin/*` — checks session via `/api/auth/get-session`, redirects non-ADMINs |
-| Prisma `Role` enum | `USER` (default) or `ADMIN` — stored in `User` model |
+| Layer                            | What it does                                                                           |
+| -------------------------------- | -------------------------------------------------------------------------------------- |
+| `lib/auth.js`                    | Better-Auth server config — email/password, Prisma adapter, role field, 7-day sessions |
+| `lib/auth-client.js`             | Better-Auth client — `useSession()`, `signIn.email()`, `signOut()`                     |
+| `app/api/auth/[...all]/route.js` | Better-Auth catch-all API handler                                                      |
+| `middleware.js`                  | Protects `/admin/*` — checks session via `/api/auth/get-session`, redirects non-ADMINs |
+| Prisma `Role` enum               | `USER` (default) or `ADMIN` — stored in `User` model                                   |
 
 ### State Management
 
-| What | Where |
-|---|---|
-| Auth session (site-wide) | Better-Auth — server sessions in PostgreSQL, client cookie |
-| Bank login session | `sessionStorage` — key: `bankUser` |
-| Bank accounts + transactions | `localStorage` — managed via `lib/bankStorage.js` |
-| Study Tracker state | `localStorage` via `lib/studyTrackerStorage.js` (anonymous users); **PostgreSQL via Prisma for logged-in users** (migration in progress — see `docs/tasks/STUDY_TRACKER_DB_MIGRATION_TASKS.md`) |
-| Site alerts | `localStorage` — managed via `lib/alertStorage.js` |
-| Theme (dark/light) | `next-themes` — class-based on `<html>` |
-| Toast notifications | `sonner` via `<Toaster>` in root layout |
-| All other state | Local `useState` in components — no global store |
+| What                         | Where                                                                                                                                                                                           |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Auth session (site-wide)     | Better-Auth — server sessions in PostgreSQL, client cookie                                                                                                                                      |
+| Bank login session           | `sessionStorage` — key: `bankUser`                                                                                                                                                              |
+| Bank accounts + transactions | `localStorage` — managed via `lib/bankStorage.js`                                                                                                                                               |
+| Study Tracker state          | `localStorage` via `lib/studyTrackerStorage.js` (anonymous users); **PostgreSQL via Prisma for logged-in users** (migration in progress — see `docs/tasks/STUDY_TRACKER_DB_MIGRATION_TASKS.md`) |
+| Site alerts                  | `localStorage` — managed via `lib/alertStorage.js`                                                                                                                                              |
+| Theme (dark/light)           | `next-themes` — class-based on `<html>`                                                                                                                                                         |
+| Toast notifications          | `sonner` via `<Toaster>` in root layout                                                                                                                                                         |
+| All other state              | Local `useState` in components — no global store                                                                                                                                                |
 
 ### Prisma Schema (PostgreSQL)
 
@@ -327,6 +328,7 @@ ApiKey        — id, userId (FK), name, key (unique), createdAt
 ```
 
 **Planned models (Study Tracker DB migration — not yet in schema):**
+
 ```
 UserSyllabus     — id, userId (FK), syllabusId, data (Json), updatedAt
 TopicProgress    — id, userId (FK), topicId, done, notes?, doneAt?, updatedAt
@@ -336,6 +338,7 @@ Habit            — id, userId (FK), habitId, title, timeMin, recurrence, custo
 HabitLog         — id, userId (FK), habitId (FK → Habit), date, done, updatedAt
 ActivityLog      — id, userId (FK), date, topicId?, syllabusId?, action, createdAt
 ```
+
 See `docs/STUDY_TRACKER_DB_MIGRATION_ANALYSIS.md` for full schema and migration rationale.
 
 ### Markdown Pipeline (for Blog + Practice pages)
@@ -374,22 +377,23 @@ Bank pages check `sessionStorage` for auth on every load and redirect to `/bank`
 ## Design System
 
 ### Project Design Style Guide
-We maintain a repository of reusable design templates, UI patterns, and styling blocks in `project-design-style.md`. 
+
+We maintain a repository of reusable design templates, UI patterns, and styling blocks in `project-design-style.md`.
 **For AI Assistants:** Reference `project-design-style.md` when asked to safely replicate a known card, banner, or styling format. Use the `Add new design template` skill when requested to document a new UI pattern in this guide.
 
 ### Colors & Theme
 
 Uses **CSS variables** defined in `app/globals.css` for light + dark mode, following shadcn/ui's `new-york` style with **slate** as base color.
 
-| Token | Usage |
-|---|---|
-| `--background` / `--foreground` | Page background and text |
-| `--primary` | Primary action color (slate-based) |
-| `--muted` | Muted text/backgrounds |
-| `--card` | Card backgrounds |
-| `--border` | Borders |
-| `--ring` | Focus rings |
-| `--radius` | 0.5rem default border radius |
+| Token                           | Usage                              |
+| ------------------------------- | ---------------------------------- |
+| `--background` / `--foreground` | Page background and text           |
+| `--primary`                     | Primary action color (slate-based) |
+| `--muted`                       | Muted text/backgrounds             |
+| `--card`                        | Card backgrounds                   |
+| `--border`                      | Borders                            |
+| `--ring`                        | Focus rings                        |
+| `--radius`                      | 0.5rem default border radius       |
 
 ### Custom Utilities (globals.css)
 
@@ -419,17 +423,20 @@ Uses **CSS variables** defined in `app/globals.css` for light + dark mode, follo
 ## Key Features Already Built
 
 ### Authentication (`/login`, `/signup`)
+
 - Email/password auth via Better-Auth
 - Role-based: `USER` (default) and `ADMIN`
 - Session lasts 7 days, cookie refreshes daily
 - Admin routes protected by `middleware.js`
 
 ### Admin Dashboard (`/admin/dashboard`)
+
 - Role-gated (ADMIN only) via Next.js middleware
 - Non-admin users redirected to `/`
 - Unauthenticated users redirected to `/login`
 
 ### Study Tracker (`/study-tracker`)
+
 - Track QA learning progress across multiple syllabi (Manual Testing, Automation, API, Playwright, etc.)
 - Views: Dashboard, Syllabus, Daily Tracker, Syllabus Manager, Resources
 - Import/export syllabi as JSON (AI-generated format supported)
@@ -439,11 +446,13 @@ Uses **CSS variables** defined in `app/globals.css` for light + dark mode, follo
 - Non-auth state stored in `localStorage` via `lib/studyTrackerStorage.js`
 
 ### QA Tools (`/qa-tools`)
+
 - Tool hub with card-based layout
 - **JSON → Downloadable File** (live): paste AI-generated JSON with FILENAME prefix, download as `.json`
 - Coming soon: JSON Formatter, Base64 Encoder/Decoder, JWT Token Decoder, Regex Tester
 
 ### Bank Demo Application (`/bank`)
+
 - Login with hardcoded credentials (`admin` / `admin123`)
 - "Remember me" via localStorage
 - Dashboard: total balance card, accounts count, transactions count, recent transactions table
@@ -456,6 +465,7 @@ Uses **CSS variables** defined in `app/globals.css` for light + dark mode, follo
 ### Practice Elements (`/practice`)
 
 22 elements available:
+
 1. POM (Page Object Model demonstration)
 2. Input (text, password, email, number, textarea)
 3. Button (click, double-click, right-click, disabled)
@@ -480,17 +490,20 @@ Uses **CSS variables** defined in `app/globals.css` for light + dark mode, follo
 22. Shadow DOM
 
 ### Blog System (`/blog`, `/learn/[slug]`, `/javascript/[slug]`)
+
 - Markdown-based content in `Blog/` directory
 - Frontmatter metadata: title, description, date, author, image, tags, slug
 - Syntax-highlighted code blocks (shiki)
 - Prose-styled HTML output
 
 ### Site Alerts (`/site-alerts`)
+
 - Admin-managed site-wide alerts displayed as popups
 - Stored in localStorage via `lib/alertStorage.js`
 - Rendered via `components/SiteAlertPopup.jsx`
 
 ### SEO
+
 - `app/sitemap.js` — dynamic sitemap generation
 - `app/robots.js` — robots.txt generation
 - `next-sitemap` — post-build sitemap (configured for qaplayground.com)
@@ -503,24 +516,25 @@ Uses **CSS variables** defined in `app/globals.css` for light + dark mode, follo
 
 ### Naming
 
-| Thing | Convention | Example |
-|---|---|---|
-| Components | PascalCase + `.jsx` | `InputPage.jsx`, `BankNavbar.jsx` |
-| Pages | lowercase `page.jsx` or `page.js` | `page.jsx` |
-| Layouts | lowercase `layout.js` | `layout.js` |
-| Data files | camelCase `.js` | `basicSetting.js`, `landingPage.js` |
-| Utilities | camelCase `.js` | `bankStorage.js`, `utils.js` |
-| Slugs | kebab-case | `file-upload`, `input-fields`, `alerts-dialogs` |
+| Thing      | Convention                        | Example                                         |
+| ---------- | --------------------------------- | ----------------------------------------------- |
+| Components | PascalCase + `.jsx`               | `InputPage.jsx`, `BankNavbar.jsx`               |
+| Pages      | lowercase `page.jsx` or `page.js` | `page.jsx`                                      |
+| Layouts    | lowercase `layout.js`             | `layout.js`                                     |
+| Data files | camelCase `.js`                   | `basicSetting.js`, `landingPage.js`             |
+| Utilities  | camelCase `.js`                   | `bankStorage.js`, `utils.js`                    |
+| Slugs      | kebab-case                        | `file-upload`, `input-fields`, `alerts-dialogs` |
 
 ### Import Paths
 
 Always use the `@/` alias — no relative paths:
+
 ```js
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { basicDetails } from "@/data/BasicSetting"
-import { authClient } from "@/lib/auth-client"
-import { prisma } from "@/lib/prisma"
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { basicDetails } from "@/data/BasicSetting";
+import { authClient } from "@/lib/auth-client";
+import { prisma } from "@/lib/prisma";
 ```
 
 ### Styling Rules
@@ -534,6 +548,7 @@ import { prisma } from "@/lib/prisma"
 ### Practice Component Structure
 
 Each practice component in `app/(Practice)/practice/_components/` follows this pattern:
+
 1. `QAPlayGround` section — the interactive elements for automation testing
 2. `LearningInsight` section — explanatory content for the learner
 
@@ -575,11 +590,11 @@ Exception: `prisma.config.ts` is required by Prisma tooling — do not convert i
 
 ## Environment Variables
 
-| Variable | Purpose |
-|---|---|
-| `DATABASE_URL` | PostgreSQL connection string for Prisma |
-| `BETTER_AUTH_URL` | Base URL for Better-Auth (defaults to `http://localhost:3000`) |
-| `BETTER_AUTH_SECRET` | Secret key for Better-Auth session signing |
+| Variable             | Purpose                                                        |
+| -------------------- | -------------------------------------------------------------- |
+| `DATABASE_URL`       | PostgreSQL connection string for Prisma                        |
+| `BETTER_AUTH_URL`    | Base URL for Better-Auth (defaults to `http://localhost:3000`) |
+| `BETTER_AUTH_SECRET` | Secret key for Better-Auth session signing                     |
 
 ---
 
@@ -600,7 +615,10 @@ Exception: `prisma.config.ts` is required by Prisma tooling — do not convert i
 - Flag bad approaches immediately before implementing
 - No unnecessary dependencies — prefer native solutions
 
+## Google Oauth signle signon
+
 <!-- gitnexus:start -->
+
 # GitNexus — Code Intelligence
 
 This project is indexed by GitNexus as **qa-playground** (1494 symbols, 3577 relationships, 101 execution flows). Use the GitNexus MCP tools to understand code, assess impact, and navigate safely.
@@ -637,35 +655,36 @@ This project is indexed by GitNexus as **qa-playground** (1494 symbols, 3577 rel
 
 ## Tools Quick Reference
 
-| Tool | When to use | Command |
-|------|-------------|---------|
-| `query` | Find code by concept | `gitnexus_query({query: "auth validation"})` |
-| `context` | 360-degree view of one symbol | `gitnexus_context({name: "validateUser"})` |
-| `impact` | Blast radius before editing | `gitnexus_impact({target: "X", direction: "upstream"})` |
-| `detect_changes` | Pre-commit scope check | `gitnexus_detect_changes({scope: "staged"})` |
-| `rename` | Safe multi-file rename | `gitnexus_rename({symbol_name: "old", new_name: "new", dry_run: true})` |
-| `cypher` | Custom graph queries | `gitnexus_cypher({query: "MATCH ..."})` |
+| Tool             | When to use                   | Command                                                                 |
+| ---------------- | ----------------------------- | ----------------------------------------------------------------------- |
+| `query`          | Find code by concept          | `gitnexus_query({query: "auth validation"})`                            |
+| `context`        | 360-degree view of one symbol | `gitnexus_context({name: "validateUser"})`                              |
+| `impact`         | Blast radius before editing   | `gitnexus_impact({target: "X", direction: "upstream"})`                 |
+| `detect_changes` | Pre-commit scope check        | `gitnexus_detect_changes({scope: "staged"})`                            |
+| `rename`         | Safe multi-file rename        | `gitnexus_rename({symbol_name: "old", new_name: "new", dry_run: true})` |
+| `cypher`         | Custom graph queries          | `gitnexus_cypher({query: "MATCH ..."})`                                 |
 
 ## Impact Risk Levels
 
-| Depth | Meaning | Action |
-|-------|---------|--------|
-| d=1 | WILL BREAK — direct callers/importers | MUST update these |
-| d=2 | LIKELY AFFECTED — indirect deps | Should test |
-| d=3 | MAY NEED TESTING — transitive | Test if critical path |
+| Depth | Meaning                               | Action                |
+| ----- | ------------------------------------- | --------------------- |
+| d=1   | WILL BREAK — direct callers/importers | MUST update these     |
+| d=2   | LIKELY AFFECTED — indirect deps       | Should test           |
+| d=3   | MAY NEED TESTING — transitive         | Test if critical path |
 
 ## Resources
 
-| Resource | Use for |
-|----------|---------|
-| `gitnexus://repo/qa-playground/context` | Codebase overview, check index freshness |
-| `gitnexus://repo/qa-playground/clusters` | All functional areas |
-| `gitnexus://repo/qa-playground/processes` | All execution flows |
-| `gitnexus://repo/qa-playground/process/{name}` | Step-by-step execution trace |
+| Resource                                       | Use for                                  |
+| ---------------------------------------------- | ---------------------------------------- |
+| `gitnexus://repo/qa-playground/context`        | Codebase overview, check index freshness |
+| `gitnexus://repo/qa-playground/clusters`       | All functional areas                     |
+| `gitnexus://repo/qa-playground/processes`      | All execution flows                      |
+| `gitnexus://repo/qa-playground/process/{name}` | Step-by-step execution trace             |
 
 ## Self-Check Before Finishing
 
 Before completing any code modification task, verify:
+
 1. `gitnexus_impact` was run for all modified symbols
 2. No HIGH/CRITICAL risk warnings were ignored
 3. `gitnexus_detect_changes()` confirms changes match expected scope
@@ -691,13 +710,13 @@ To check whether embeddings exist, inspect `.gitnexus/meta.json` — the `stats.
 
 ## CLI
 
-| Task | Read this skill file |
-|------|---------------------|
-| Understand architecture / "How does X work?" | `.claude/skills/gitnexus/gitnexus-exploring/SKILL.md` |
-| Blast radius / "What breaks if I change X?" | `.claude/skills/gitnexus/gitnexus-impact-analysis/SKILL.md` |
-| Trace bugs / "Why is X failing?" | `.claude/skills/gitnexus/gitnexus-debugging/SKILL.md` |
-| Rename / extract / split / refactor | `.claude/skills/gitnexus/gitnexus-refactoring/SKILL.md` |
-| Tools, resources, schema reference | `.claude/skills/gitnexus/gitnexus-guide/SKILL.md` |
-| Index, status, clean, wiki CLI commands | `.claude/skills/gitnexus/gitnexus-cli/SKILL.md` |
+| Task                                         | Read this skill file                                        |
+| -------------------------------------------- | ----------------------------------------------------------- |
+| Understand architecture / "How does X work?" | `.claude/skills/gitnexus/gitnexus-exploring/SKILL.md`       |
+| Blast radius / "What breaks if I change X?"  | `.claude/skills/gitnexus/gitnexus-impact-analysis/SKILL.md` |
+| Trace bugs / "Why is X failing?"             | `.claude/skills/gitnexus/gitnexus-debugging/SKILL.md`       |
+| Rename / extract / split / refactor          | `.claude/skills/gitnexus/gitnexus-refactoring/SKILL.md`     |
+| Tools, resources, schema reference           | `.claude/skills/gitnexus/gitnexus-guide/SKILL.md`           |
+| Index, status, clean, wiki CLI commands      | `.claude/skills/gitnexus/gitnexus-cli/SKILL.md`             |
 
 <!-- gitnexus:end -->
