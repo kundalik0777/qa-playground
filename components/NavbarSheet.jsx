@@ -40,7 +40,7 @@ const NAV_LINKS = [
     label: "Study Tracker",
     icon: LayoutDashboard,
     aria: "Open study tracker dashboard",
-    badge: "New",
+    // badge: "New",
   },
   {
     href: "/blog",

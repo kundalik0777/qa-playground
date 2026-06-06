@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 
 const NAV_LINKS = [
   { to: "/", text: "Home" },
-  { to: "/study-tracker/dashboard", text: "Study Tracker", badge: "New" },
+  { to: "/study-tracker/dashboard", text: "Study Tracker" },
   { to: "/bank", text: "Bank Demo" },
   { to: "/practice", text: "Practice" },
   { to: "/qa-tools", text: "QA Tools" },
@@ -131,7 +131,7 @@ const Header = () => {
                         size={13}
                         className={cn(
                           "text-gray-400 flex-shrink-0 transition-transform duration-150",
-                          dropdownOpen && "rotate-180"
+                          dropdownOpen && "rotate-180",
                         )}
                       />
                     </button>

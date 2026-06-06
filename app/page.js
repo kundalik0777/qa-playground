@@ -9,12 +9,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import Link from "next/link";
-import {
-  statsData,
-  featuresData,
-  howItWorksData,
-  testimonialsData,
-} from "@/data/landingPage";
+import { statsData, featuresData, howItWorksData } from "@/data/landingPage";
 import {
   BookOpen,
   CreditCard,
@@ -125,42 +120,62 @@ const jsonLd = {
 const faqItems = [
   {
     q: "What is QA Playground and who is it built for?",
+    shortA:
+      "QA Playground is a free, purpose-built automation testing practice site for QA engineers at any level. It offers 22+ interactive UI elements, a full Bank Demo App, and a Study Tracker — all designed for Selenium, Playwright, and Cypress practice.",
     a: "QA Playground is a free, purpose-built automation testing practice website for QA engineers at any level. It offers 22+ interactive UI elements — inputs, tables, drag-and-drop, shadow DOM, alerts, file upload, and more — plus a full Bank Demo App and Study Tracker. Whether you're a beginner learning Selenium for the first time or an experienced engineer sharpening your Playwright or Cypress skills, everything here is designed to mirror real-world testability challenges.",
   },
   {
     q: "Which UI elements can I practice automation testing on?",
+    shortA:
+      "22 practice elements including inputs, buttons, tables, drag-and-drop, iFrames, alerts, shadow DOM, date pickers, file upload, and more. Every element is built with id, data-testid, and data-action attributes so your locators work as expected across all frameworks.",
     a: "QA Playground includes 22 practice elements: text inputs, buttons (click, double-click, right-click), dropdowns, radio buttons, checkboxes, alerts and dialogs, iFrames, new-window and tab switching, drag-and-drop, sortable lists, sliders, simple and advanced data tables, date pickers, file upload and download, shadow DOM, multi-select, dynamic waits, and more. Each element is built with testability in mind — with id, data-testid, and data-action attributes — so your Selenium WebDriver or Playwright locators work exactly as expected.",
   },
   {
     q: "Is QA Playground completely free to use for Selenium, Playwright, and Cypress practice?",
+    shortA:
+      "Yes — 100% free, no credit card, no paywall. All 22 practice elements, the Bank Demo App, Study Tracker, and QA Tools are always free. An optional account lets you sync Study Tracker progress across devices, but it is never required.",
     a: "Yes — 100% free, no credit card, no paywall. All 22 practice elements, the Bank Demo App for end-to-end testing practice, the QA Study Tracker, and QA Tools like the JSON to File Converter are all free. An optional account lets you sync your Study Tracker progress across devices, but it is never required.",
   },
   {
     q: "What is the Bank Demo App and how does it help with end-to-end test automation?",
+    shortA:
+      "A simulated banking app with login (admin / admin123), accounts CRUD, a dashboard, and transaction management with filtering. Built specifically for practicing end-to-end automation frameworks and Page Object Model test suites.",
     a: "The Bank Demo App is a fully simulated banking application with login (admin / admin123), a dashboard, accounts CRUD, and transaction management with filtering. It is purpose-built for practicing end-to-end automation frameworks — build a full Page Object Model test suite covering login flows, account creation, balance updates, and transaction filtering, all on a stable, predictable UI with proper test attributes.",
   },
   {
     q: "Can I practice Shadow DOM, drag-and-drop, iFrame, and dynamic waits with Selenium WebDriver?",
+    shortA:
+      "Yes. Dedicated practice pages cover Shadow DOM, drag-and-drop, sortable lists, iFrames, multi-window switching, and dynamic wait scenarios. Every scenario is repeatable so you can run tests as many times as needed.",
     a: "Yes. QA Playground includes dedicated practice pages for Shadow DOM elements, drag-and-drop and sortable lists, iFrame handling, multi-window and tab switching, explicit/implicit wait scenarios, and dynamic alerts — the exact elements that trip up most Selenium WebDriver and Playwright beginners. Every scenario is repeatable, so you can run tests as many times as needed.",
   },
   {
     q: "How does the QA Study Tracker help me learn automation testing step by step?",
+    shortA:
+      "A personal learning dashboard with structured syllabi for Manual Testing, Selenium, API Testing, and Playwright. Track topic completion, log daily study sessions, save resources, and view progress charts — no login required.",
     a: "The QA Study Tracker is a personal learning dashboard with structured syllabi for Manual Testing, Selenium Automation, API Testing, and Playwright. Track topic completion, log daily study sessions, save articles and videos as resources, and view your progress with charts. You can also import AI-generated syllabi or export your own — making it a flexible companion for a self-paced QA automation learning roadmap.",
   },
   {
     q: "Which automation frameworks does QA Playground support?",
+    shortA:
+      "All practice elements and the Bank Demo App are framework-agnostic. Selenium WebDriver (Java, Python, JavaScript), Playwright, and Cypress all work — elements expose standard HTML attributes for CSS selectors, XPath, and role-based locators.",
     a: "All practice elements and the Bank Demo App are fully framework-agnostic. You can use Selenium WebDriver (Java, Python, or JavaScript), Playwright (JavaScript, TypeScript, or Python), or Cypress (JavaScript/TypeScript). Elements expose standard HTML attributes so locator strategies — CSS selectors, XPath, getByRole, getByTestId — all work correctly across frameworks.",
   },
   {
     q: "Can I use QA Playground to prepare for a QA automation engineer job interview?",
+    shortA:
+      "Yes. The platform covers scenarios commonly tested in technical QA interviews — dynamic tables, Page Object Model, pop-ups, shadow DOM, and maintaining stable test suites. The blog also includes automation concepts and interview question guides.",
     a: "Yes. The platform is used by QA engineers specifically for interview preparation. The practice elements cover scenarios commonly tested in technical QA interviews — handling dynamic tables, writing Page Object Model code, dealing with pop-ups and shadow DOM, and creating stable, maintainable test suites. The blog and learn sections also include automation concepts, logic programs, and QA interview question guides.",
   },
   {
     q: "Do I need to install anything to practice Selenium or Playwright on QA Playground?",
+    shortA:
+      "Nothing to install on QA Playground itself — it runs entirely in your browser. Write and run your Selenium, Playwright, or Cypress scripts locally, pointed at https://www.qaplayground.com, mirroring a real professional workflow.",
     a: "No installation needed on QA Playground itself — the practice site runs entirely in your browser. You write and run your Selenium, Playwright, or Cypress scripts locally on your machine, pointed at https://www.qaplayground.com. This mirrors a real professional workflow: a running app, your local test project, and a CI/CD pipeline if you want to extend the practice.",
   },
   {
     q: "How is my progress and test data stored? Is it private?",
+    shortA:
+      "Study Tracker data is stored in your browser's localStorage by default — nothing is sent externally without your choice. Create a free account to sync progress to a secure database. Bank Demo data also stays local in your browser.",
     a: "All Study Tracker data — syllabus progress, daily logs, saved resources — is stored in your browser's localStorage by default. Nothing is sent to external servers without your explicit choice. If you create a free account and opt in to sync, data is stored in a secure PostgreSQL database tied to your account. The Bank Demo App also stores account and transaction data locally in your browser, so it resets if you clear your browser data.",
   },
 ];
@@ -343,7 +358,7 @@ const LandingPage = () => {
           </Card>
 
           {/* QA Playground Telegram Bot */}
-          <Card className="p-6 shadow-lg rounded-xl border-t-4 border-t-sky-500 relative overflow-hidden flex flex-col">
+          {/* <Card className="p-6 shadow-lg rounded-xl border-t-4 border-t-sky-500 relative overflow-hidden flex flex-col">
             <div className="absolute top-3 right-3">
               <Badge className="bg-sky-500 text-white text-xs">New</Badge>
             </div>
@@ -365,7 +380,7 @@ const LandingPage = () => {
                 <TelegramBotResourceLink />
               </div>
             </CardContent>
-          </Card>
+          </Card> */}
         </div>
       </section>
 
@@ -674,44 +689,6 @@ const LandingPage = () => {
         </div>
       </section> */}
 
-      {/* Testimonials */}
-      <section
-        aria-label="Testimonials from QA engineers"
-        className="py-14 px-4 bg-muted/30"
-      >
-        <h2 className="text-2xl font-bold text-center mb-3">
-          What QA Engineers Say
-        </h2>
-        <p className="text-center text-muted-foreground mb-10 max-w-xl mx-auto">
-          Trusted by thousands of QA professionals worldwide.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {testimonialsData.map((t, i) => (
-            <Card key={i} className="p-6 shadow rounded-xl">
-              <CardContent className="pt-0">
-                <p className="text-sm text-muted-foreground italic mb-5">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <div className="flex items-center gap-3">
-                  <img
-                    src={t.image}
-                    alt={`${t.name}, ${t.role}`}
-                    className="w-10 h-10 rounded-full"
-                    width="40"
-                    height="40"
-                    loading="lazy"
-                  />
-                  <div>
-                    <p className="font-semibold text-sm">{t.name}</p>
-                    <p className="text-xs text-muted-foreground">{t.role}</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
       {/* FAQ Section */}
       <section aria-label="Frequently asked questions" className="py-14 px-4">
         {/* FAQPage JSON-LD */}
@@ -741,7 +718,7 @@ const LandingPage = () => {
                   {item.q}
                 </AccordionTrigger>
                 <AccordionContent className="text-sm text-muted-foreground pb-4">
-                  {item.a}
+                  {item.shortA}
                 </AccordionContent>
               </AccordionItem>
             ))}

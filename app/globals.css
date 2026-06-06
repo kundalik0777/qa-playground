@@ -98,13 +98,6 @@ body {
     @apply gradient-sub font-extrabold tracking-tighter pr-2 pb-2 text-transparent bg-clip-text;
   }
 
-  /* Auth pages — background gradient */
-  .auth-page-bg {
-    background: linear-gradient(135deg, #e8eeff 0%, #f3e8ff 40%, #e0f2fe 100%);
-    background-attachment: fixed;
-  }
-
-  /* Auth card — soft layered shadow with brand tint */
   .auth-card-shadow {
     box-shadow:
       0 4px 6px -1px rgba(99, 102, 241, 0.08),
@@ -113,49 +106,11 @@ body {
   }
 }
 
-.dark .auth-page-bg {
-  background: linear-gradient(135deg, #080818 0%, #0d0420 50%, #080c18 100%);
-  background-attachment: fixed;
-}
-
-/* Bank login — animated gradient background (UI-12) */
-@keyframes bank-bg-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50%       { background-position: 100% 50%; }
-}
-
-.bank-login-bg {
-  background: linear-gradient(-45deg, #f3e8ff, #ede9fe, #dbeafe, #fce7f3, #f3e8ff);
-  background-size: 400% 400%;
-  animation: bank-bg-shift 12s ease infinite;
-}
-
-.dark .bank-login-bg {
-  background: linear-gradient(-45deg, #1a0638, #0c1435, #180d30, #1a0622, #1a0638);
-  background-size: 400% 400%;
-  animation: bank-bg-shift 12s ease infinite;
-}
-
 .dark .auth-card-shadow {
   box-shadow:
     0 4px 6px -1px rgba(99, 102, 241, 0.15),
     0 10px 30px -5px rgba(99, 102, 241, 0.2),
     0 0 0 1px rgba(139, 92, 246, 0.1);
-}
-
-.hero-image-wrapper {
-  perspective: 1000px;
-}
-
-.hero-image {
-  /* transform: rotateX(20deg) scale(0.9) translateY(-50); */
-  transform: rotateX(15deg) scale(1);
-  transition: transform 0.5s ease-out;
-  will-change: transform;
-}
-
-.hero-image.scrolled {
-  transform: rotateX(0deg) scale(1) translateY(40px);
 }
 
 .prose table {

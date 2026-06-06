@@ -18,8 +18,8 @@ const HeroSection = () => {
         </h1>
 
         <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-4xl mx-auto">
-          Practice Selenium, Playwright, and Cypress automation testing with
-          22+ interactive UI elements, a Bank Demo app, and a built-in Study
+          Practice Selenium, Playwright, and Cypress automation testing with 22+
+          interactive UI elements, a Bank Demo app, and a built-in Study
           Tracker. Free for QA engineers at every level.
         </p>
 
@@ -27,6 +27,7 @@ const HeroSection = () => {
           <Link href="/practice" passHref prefetch={false}>
             <Button
               size="lg"
+              variant="default"
               className="px-8 bg-primary text-primary-foreground hover:bg-primary/90"
             >
               Get Started
@@ -40,7 +41,7 @@ const HeroSection = () => {
           >
             <Button
               size="lg"
-              variant="outline"
+              variant="ghost"
               className="px-8 border border-border text-foreground hover:bg-accent hover:text-accent-foreground"
             >
               Watch Demo
