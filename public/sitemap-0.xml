@@ -57,4 +57,5 @@
 <url><loc>https://www.qaplayground.com</loc><lastmod>2026-06-06T06:12:56.742Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 <url><loc>https://www.qaplayground.com/robots.txt</loc><lastmod>2026-06-06T06:12:56.742Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 <url><loc>https://www.qaplayground.com/sitemap.xml</loc><lastmod>2026-06-06T06:12:56.742Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.qaplayground.com/ads.txt</loc><changefreq>monthly</changefreq><priority>0.2</priority></url>
 </urlset>

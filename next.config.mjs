@@ -87,6 +87,11 @@ const nextConfig = {
         permanent: true,
       },
       { source: "/bank/login", destination: "/login", permanent: true },
+      {
+        source: "/raise-issue",
+        destination: "https://github.com/kundalik-dev/qaplayground-support/issues",
+        permanent: true,
+      },
     ];
   },
 

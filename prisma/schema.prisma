@@ -324,6 +324,30 @@ model InterviewSessionToken {
   @@index([sessionId])
 }
 
+// ─── Contact Form Submissions ─────────────────────────────────────────────────
+
+enum ContactStatus {
+  UNREAD
+  READ
+  REPLIED
+}
+
+// One row per contact form submission from the /contact-us page.
+model ContactMessage {
+  id        String        @id @default(cuid())
+  name      String
+  email     String
+  topic     String
+  message   String
+  status    ContactStatus @default(UNREAD)
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime      @default(now())
+
+  @@index([status])
+  @@index([createdAt])
+}
+
 // ─── Site Alert Feature ───────────────────────────────────────────────────────
 
 enum SiteAlertQuestionType {

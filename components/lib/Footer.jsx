@@ -43,32 +43,32 @@ const platformLinks = [
     badgeClass:
       "bg-orange-50 text-orange-600 dark:bg-orange-950/40 dark:text-orange-400",
   },
-  {
-    href: "https://t.me/QAPlayGround_Bot",
-    label: "QA Playground Bot",
-    icon: <FaTelegram className="h-3.5 w-3.5" />,
-    badge: "Free",
-    badgeClass:
-      "bg-orange-50 text-orange-600 dark:bg-orange-950/40 dark:text-orange-400",
-  },
-  {
-    href: "https://chromewebstore.google.com/detail/jhgkhnokloeklnagbkgkgcfphafifefg?utm_source=item-share-cb",
-    label: "QA Capture",
-    icon: <Chrome className="h-3.5 w-3.5" />,
-    badge: "Extension",
-    badgeClass:
-      "bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400",
-    external: true,
-  },
-  {
-    href: "https://chromewebstore.google.com/detail/jegdkegbomfbmhhimfjgacdblcoodfpd?utm_source=item-share-cb",
-    label: "QA Playground Clipper",
-    icon: <Chrome className="h-3.5 w-3.5" />,
-    badge: "Extension",
-    badgeClass:
-      "bg-blue-50 text-blue-600 dark:bg-blue-950/40 dark:text-blue-400",
-    external: true,
-  },
+  // {
+  //   href: allUrls.telegramBotURL,
+  //   label: "QA Playground Bot",
+  //   icon: <FaTelegram className="h-3.5 w-3.5" />,
+  //   badge: "Free",
+  //   badgeClass:
+  //     "bg-orange-50 text-orange-600 dark:bg-orange-950/40 dark:text-orange-400",
+  // },
+  // {
+  //   href: allUrls.qaCaptureChromeURL,
+  //   label: "QA Capture",
+  //   icon: <Chrome className="h-3.5 w-3.5" />,
+  //   badge: "Extension",
+  //   badgeClass:
+  //     "bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400",
+  //   external: true,
+  // },
+  // {
+  //   href: allUrls.qaClipperChromeURL,
+  //   label: "QA Playground Clipper",
+  //   icon: <Chrome className="h-3.5 w-3.5" />,
+  //   badge: "Extension",
+  //   badgeClass:
+  //     "bg-blue-50 text-blue-600 dark:bg-blue-950/40 dark:text-blue-400",
+  //   external: true,
+  // },
 ];
 
 const learnLinks = [
@@ -77,7 +77,7 @@ const learnLinks = [
   { href: "/qa-tools", label: "Free QA Tools" },
   { href: "/study-tracker/ai-syllabus-prompt", label: "AI Syllabus Generator" },
   {
-    href: "https://github.com/kundalik5545/QA_PlayGround_Automation_Framework",
+    href: allUrls.automationFrameworkURL,
     label: "Automation Framework",
     external: true,
   },
@@ -86,7 +86,7 @@ const learnLinks = [
 const companyLinks = [
   { href: "/about-us", label: "About Us" },
   { href: "/contact-us", label: "Contact Us" },
-  { href: "/raise-issue", label: "Raise an Issue" },
+  { href: allUrls.githubIssue, label: "Raise an Issue", external: true },
   { href: "/privacy-policy", label: "Privacy Policy" },
   { href: "/login", label: "Login" },
 ];
@@ -98,22 +98,22 @@ const socialLinks = [
     label: "YouTube",
   },
   {
-    href: "https://github.com/kundalik-dev",
+    href: allUrls.githubURL,
     icon: <FaGithub size={18} />,
     label: "GitHub",
   },
+  // {
+  //   href: allUrls.linkedInURL,
+  //   icon: <FaLinkedin size={18} />,
+  //   label: "LinkedIn",
+  // },
   {
-    href: "https://www.linkedin.com/in/kundalik-jadhav",
-    icon: <FaLinkedin size={18} />,
-    label: "LinkedIn",
-  },
-  {
-    href: `https://twitter.com/intent/tweet?url=${encodeURIComponent(basicDetails.websiteURL)}`,
+    href: allUrls.twitterShareURL,
     icon: <FaTwitter size={18} />,
     label: "Twitter",
   },
   {
-    href: `https://t.me/share/url?url=${encodeURIComponent(basicDetails.websiteURL)}`,
+    href: allUrls.telegramShareURL,
     icon: <FaTelegram size={18} />,
     label: "Telegram",
   },
@@ -125,7 +125,9 @@ const Footer = () => {
       <div className="container mx-auto px-4 pt-4 pb-2 max-w-7xl">
         {/* Main grid */}
         {/* sr-only paragraph bridges the heading level gap (page H2 → footer H4) */}
-        <p className="sr-only" role="presentation">Footer Navigation</p>
+        <p className="sr-only" role="presentation">
+          Footer Navigation
+        </p>
         <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-8 md:gap-10 pb-10 border-b border-border">
           {/* Column 1 — Brand */}
           <div className="col-span-1 sm:col-span-3 md:col-span-1 flex flex-col gap-3">
@@ -244,6 +246,8 @@ const Footer = () => {
                   key={link.href}
                   href={link.href}
                   prefetch={false}
+                  target={link.external ? "_blank" : undefined}
+                  rel={link.external ? "noopener noreferrer" : undefined}
                   className="text-sm text-foreground/80 hover:text-foreground transition-colors"
                 >
                   {link.label}
@@ -251,7 +255,7 @@ const Footer = () => {
               ))}
             </nav>
 
-            <div className="mt-4 pt-4 border-t border-border">
+            {/* <div className="mt-4 pt-4 border-t border-border">
               <p className="text-xs text-muted-foreground">
                 *No account required. Creating a login is entirely optional and
                 is only necessary if you wish to sync your progress in the Study
@@ -261,7 +265,7 @@ const Footer = () => {
                 *Your data is stored locally within your browser for maximum
                 privacy.
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
 

@@ -37,6 +37,11 @@ export default async function sitemap() {
       changeFrequency: "yearly",
       priority: 0.3,
     },
+    {
+      url: `${basicDetails.websiteURL}/ads.txt`,
+      changeFrequency: "monthly",
+      priority: 0.2,
+    },
   ];
 
   // Practice element pages from siteMapUrls
