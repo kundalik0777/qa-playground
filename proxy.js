@@ -29,24 +29,33 @@ export async function proxy(request) {
   const { pathname } = request.nextUrl;
 
   // ── Rate limiting on auth endpoints ──────────────────────────────────────
+  // Fail open: if Upstash is unreachable or over its request quota, never let
+  // the rate limiter crash auth — allow the request through instead.
   if (ratelimit && pathname.startsWith("/api/auth")) {
     const ip = getClientIp(request);
-    const { success, limit, remaining, reset } = await ratelimit.limit(ip);
+    try {
+      const { success, limit, remaining, reset } = await ratelimit.limit(ip);
 
-    if (!success) {
-      return new NextResponse(
-        JSON.stringify({ error: "Too many requests. Please try again later." }),
-        {
-          status: 429,
-          headers: {
-            "Content-Type": "application/json",
-            "X-RateLimit-Limit": String(limit),
-            "X-RateLimit-Remaining": "0",
-            "X-RateLimit-Reset": String(reset),
-            "Retry-After": String(Math.ceil((reset - Date.now()) / 1000)),
-          },
-        }
-      );
+      if (!success) {
+        return new NextResponse(
+          JSON.stringify({
+            error: "Too many requests. Please try again later.",
+          }),
+          {
+            status: 429,
+            headers: {
+              "Content-Type": "application/json",
+              "X-RateLimit-Limit": String(limit),
+              "X-RateLimit-Remaining": "0",
+              "X-RateLimit-Reset": String(reset),
+              "Retry-After": String(Math.ceil((reset - Date.now()) / 1000)),
+            },
+          }
+        );
+      }
+    } catch (err) {
+      // Upstash failure (quota exceeded, network error, etc.) — log and continue.
+      console.error("[proxy] Rate limit check failed, allowing request:", err?.message);
     }
   }
 
